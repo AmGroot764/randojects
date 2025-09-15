@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Metadata Remover</title>
+  <link rel="stylesheet" href="../style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- exif-js to extract metadata -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.min.js"></script>
+
+  <style>
+    /* Override / additional styles */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .preview {
+      margin: 20px 0;
+      max-width: 100%;
+      display: block;
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f5f5f5;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #007BFF;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background-color: #0056b3;
+    }
+
+    input[type="file"] {
+      margin-top: 10px;
+    }
+
+    #toggle-metadata {
+      margin-top: 20px;
+      display: none;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #toggle-metadata:hover {
+      background-color: #0056b3;
+    }
+
+    #metadata-wrapper {
+      display: none;
+      margin-top: 10px;
+    }
+
+    #no-metadata {
+      margin-top: 20px;
+      font-style: italic;
+      color: #666;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Image Metadata Remover</h1>
+    <p>Upload an image to view its metadata and download a clean version without it.</p>
+  </header>
+
+  <main class="container">
+    <input type="file" id="upload" accept="image/*">
+    <img id="preview" class="preview" style="display: none;" alt="Image preview">
+
+    <!-- Metadata toggle button -->
+    <button id="toggle-metadata">Show Metadata</button>
+
+    <!-- Collapsible metadata wrapper -->
+    <div id="metadata-wrapper">
+      <table id="metadata-table">
+        <thead>
+          <tr>
+            <th>Tag</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- No metadata message -->
+    <p id="no-metadata">No metadata found.</p>
+
+    <canvas id="canvas" style="display: none;"></canvas>
+    <br>
+    <a id="download" class="button" style="display: none;" download="cleaned-image.jpg">Download Clean Image</a>
+  </main>
+
+  <footer>
+    <p>← <a href="../index.html">Back to Projects</a></p>
+  </footer>
+
+  <script>
+    const upload = document.getElementById('upload');
+    const canvas = document.getElementById('canvas');
+    const download = document.getElementById('download');
+    const preview = document.getElementById('preview');
+    const table = document.getElementById('metadata-table');
+    const tableBody = table.querySelector('tbody');
+    const toggleBtn = document.getElementById('toggle-metadata');
+    const metadataWrapper = document.getElementById('metadata-wrapper');
+    const noMetadata = document.getElementById('no-metadata');
+
+    upload.addEventListener('change', function () {
+      const file = this.files[0];
+      if (!file) return;
+
+      // Reset previous output
+      preview.style.display = 'none';
+      download.style.display = 'none';
+      tableBody.innerHTML = '';
+      metadataWrapper.style.display = 'none';
+      toggleBtn.style.display = 'none';
+      noMetadata.style.display = 'none';
+      toggleBtn.textContent = 'Show Metadata';
+
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const img = new Image();
+        img.src = e.target.result;
+
+        img.onload = function () {
+          preview.src = img.src;
+          preview.style.display = 'block';
+
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+
+          canvas.toBlob((blob) => {
+            const newUrl = URL.createObjectURL(blob);
+            download.href = newUrl;
+            download.style.display = 'inline-block';
+          }, 'image/jpeg', 0.95);
+        };
+
+        // Extract metadata
+        EXIF.getData(file, function () {
+          const allMetaData = EXIF.getAllTags(this);
+          const hasMetadata = Object.keys(allMetaData).length > 0;
+
+          if (hasMetadata) {
+            for (let tag in allMetaData) {
+              const row = document.createElement('tr');
+              row.innerHTML = `<td>${tag}</td><td>${allMetaData[tag]}</td>`;
+              tableBody.appendChild(row);
+            }
+            toggleBtn.style.display = 'inline-block';
+          } else {
+            noMetadata.style.display = 'block';
+          }
+        });
+      };
+
+      reader.readAsDataURL(file);
+    });
+
+    toggleBtn.addEventListener('click', function () {
+      const isVisible = metadataWrapper.style.display === 'block';
+      metadataWrapper.style.display = isVisible ? 'none' : 'block';
+      toggleBtn.textContent = isVisible ? 'Show Metadata' : 'Hide Metadata';
+    });
+  </script>
+</body>
+</html>
