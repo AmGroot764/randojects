@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Image Metadata Remover</title>
+  <title>Show Metadata & Erase It</title>
   <link rel="stylesheet" href="../style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- exif-js to extract metadata -->
@@ -61,9 +61,8 @@
       margin-top: 10px;
     }
 
-    #toggle-metadata {
+    #toggle-metadata, #show-location {
       margin-top: 20px;
-      display: none;
       background-color: #007BFF;
       color: white;
       border: none;
@@ -71,9 +70,10 @@
       font-size: 1rem;
       border-radius: 5px;
       cursor: pointer;
+      display: none;
     }
 
-    #toggle-metadata:hover {
+    #toggle-metadata:hover, #show-location:hover {
       background-color: #0056b3;
     }
 
@@ -100,7 +100,7 @@
 <body>
 
   <header>
-    <h1>Image Metadata Remover</h1>
+    <h1>Show Metadata & Erase It</h1>
     <p>Upload an image to view its metadata and download a clean version without it.</p>
   </header>
 
@@ -110,6 +110,7 @@
 
     <!-- Metadata toggle button -->
     <button id="toggle-metadata">Show Metadata</button>
+    <button id="show-location">Show Location</button>
 
     <!-- Collapsible metadata wrapper -->
     <div id="metadata-wrapper">
@@ -141,11 +142,21 @@
     const canvas = document.getElementById('canvas');
     const download = document.getElementById('download');
     const preview = document.getElementById('preview');
-    const table = document.getElementById('metadata-table');
-    const tableBody = table.querySelector('tbody');
+    const tableBody = document.querySelector('#metadata-table tbody');
     const toggleBtn = document.getElementById('toggle-metadata');
     const metadataWrapper = document.getElementById('metadata-wrapper');
     const noMetadata = document.getElementById('no-metadata');
+    const showLocationBtn = document.getElementById('show-location');
+
+    let gpsCoords = null;
+
+    function convertToDecimal(coord, ref) {
+      if (!coord) return null;
+      const [d, m, s] = coord;
+      let decimal = d + (m / 60) + (s / 3600);
+      if (ref === 'S' || ref === 'W') decimal *= -1;
+      return decimal;
+    }
 
     upload.addEventListener('change', function () {
       const file = this.files[0];
@@ -159,6 +170,8 @@
       toggleBtn.style.display = 'none';
       noMetadata.style.display = 'none';
       toggleBtn.textContent = 'Show Metadata';
+      showLocationBtn.style.display = 'none';
+      gpsCoords = null;
 
       const reader = new FileReader();
 
@@ -194,6 +207,14 @@
               tableBody.appendChild(row);
             }
             toggleBtn.style.display = 'inline-block';
+
+            // Check for GPS
+            const lat = convertToDecimal(allMetaData.GPSLatitude, allMetaData.GPSLatitudeRef);
+            const lng = convertToDecimal(allMetaData.GPSLongitude, allMetaData.GPSLongitudeRef);
+            if (lat && lng) {
+              gpsCoords = { lat, lng };
+              showLocationBtn.style.display = 'inline-block';
+            }
           } else {
             noMetadata.style.display = 'block';
           }
@@ -207,6 +228,13 @@
       const isVisible = metadataWrapper.style.display === 'block';
       metadataWrapper.style.display = isVisible ? 'none' : 'block';
       toggleBtn.textContent = isVisible ? 'Show Metadata' : 'Hide Metadata';
+    });
+
+    showLocationBtn.addEventListener('click', function () {
+      if (gpsCoords) {
+        const url = `https://www.google.com/maps?q=${gpsCoords.lat},${gpsCoords.lng}`;
+        window.open(url, '_blank');
+      }
     });
   </script>
 </body>
