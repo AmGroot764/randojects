@@ -4,8 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#12101b">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Imposter Party Game</title>
-  <link rel="stylesheet" href="../style.css">
+  <script>
+    const stylesheet = document.createElement('link');
+    stylesheet.rel = 'stylesheet';
+    stylesheet.href = `../style.css?v=${Date.now()}`;
+    document.head.append(stylesheet);
+  </script>
   <style>
     :root { color-scheme:dark; --ink:#f5f2ff; --muted:#aaa3bc; --surface:#1d1929; --surface-soft:#282235; --page:#12101b; --brand:#a78bfa; --brand-dark:#8b6df1; --line:#393149; --danger:#fb7185; }
     body.game-page { background:radial-gradient(circle at 8% 0, #2e2056 0, transparent 32rem), radial-gradient(circle at 95% 100%, #19374a 0, transparent 30rem), var(--page); color:var(--ink); padding:20px; min-height:100vh; }
