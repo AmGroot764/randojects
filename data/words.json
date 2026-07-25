@@ -1,0 +1,22 @@
+{
+  "Objects": ["Backpack", "Clock", "Key", "Mirror", "Umbrella", "Camera", "Notebook", "Lantern", "Suitcase", "Puzzle"],
+  "Animals": ["Dog", "Tiger", "Dolphin", "Penguin", "Elephant", "Butterfly", "Octopus", "Giraffe", "Owl", "Kangaroo"],
+  "Food": ["Pizza", "Sushi", "Pancakes", "Tacos", "Ice Cream", "Biryani", "Popcorn", "Lasagna", "Mango", "Doughnut"],
+  "Movies": ["Titanic", "Inception", "Avatar", "Jaws", "Gladiator", "Frozen", "Interstellar", "Coco", "Rocky", "Shrek"],
+  "TV Shows": ["Friends", "Stranger Things", "The Office", "Sherlock", "Breaking Bad", "Wednesday", "The Simpsons", "Dark", "The Crown", "Lost"],
+  "Video Games": ["Minecraft", "Tetris", "Fortnite", "Pac-Man", "Zelda", "Among Us", "Pokemon", "FIFA", "Mario Kart", "Roblox"],
+  "Celebrities": ["Taylor Swift", "Tom Cruise", "Beyonce", "Shah Rukh Khan", "Zendaya", "Lionel Messi", "Ariana Grande", "Dwayne Johnson", "Rihanna", "Keanu Reeves"],
+  "Sports": ["Football", "Cricket", "Tennis", "Basketball", "Swimming", "Golf", "Badminton", "Boxing", "Hockey", "Baseball"],
+  "Countries": ["India", "Japan", "Brazil", "Canada", "Egypt", "Italy", "Australia", "Kenya", "Norway", "Mexico"],
+  "Cities": ["Mumbai", "Tokyo", "Paris", "London", "Dubai", "New York", "Sydney", "Rome", "Seoul", "Cairo"],
+  "Mythology": ["Zeus", "Thor", "Medusa", "Karma", "Phoenix", "Odin", "Hercules", "Krishna", "Anubis", "Pegasus"],
+  "Science": ["Gravity", "Atom", "Volcano", "DNA", "Telescope", "Robot", "Comet", "Fossil", "Magnet", "Rainbow"],
+  "Technology": ["Smartphone", "Internet", "Drone", "Keyboard", "Satellite", "Headphones", "Password", "Microchip", "Wi-Fi", "Virtual Reality"],
+  "Household Items": ["Sofa", "Toothbrush", "Pillow", "Refrigerator", "Broom", "Toaster", "Curtains", "Mug", "Vacuum", "Candle"],
+  "Nature": ["Waterfall", "Mountain", "Desert", "Ocean", "Thunder", "Rainbow", "Glacier", "Cave", "Island", "Forest"],
+  "Plants": ["Rose", "Cactus", "Bamboo", "Sunflower", "Fern", "Orchid", "Tulip", "Moss", "Ivy", "Lily"],
+  "Fruits": ["Apple", "Banana", "Mango", "Strawberry", "Pineapple", "Watermelon", "Grapes", "Orange", "Cherry", "Papaya"],
+  "Vehicles": ["Bicycle", "Train", "Airplane", "Motorcycle", "Submarine", "Tractor", "Ambulance", "Rocket", "Scooter", "Sailboat"],
+  "Music": ["Guitar", "Piano", "Drums", "Violin", "Concert", "Microphone", "Jazz", "Rap", "Playlist", "Orchestra"],
+  "Jobs": ["Doctor", "Teacher", "Chef", "Pilot", "Firefighter", "Architect", "Artist", "Scientist", "Lawyer", "Farmer"]
+}
