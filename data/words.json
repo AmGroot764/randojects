@@ -1,5 +1,5 @@
 {
-  "Objects": ["Backpack", "Clock", "Key", "Mirror", "Umbrella", "Camera", "Notebook", "Lantern", "Suitcase", "Puzzle"],
+  "Objects": ["Backpack", "Clock", "Key", "Mirror", "Umbrella", "Camera", "Notebook", "Lantern", "Suitcase", "Puzzle", "Oven", "Spice", "Charger", "Laptop", "Bottle", "Chair", "Table", "Lamp", "Television", "Remote Control", "Wallet", "Sunglasses", "Watch", "Headphones", "Power Bank", "Toaster", "Blender", "Microwave", "Kettle", "Plate", "Spoon", "Fork", "Knife", "Mug", "Tissue Box", "Broom", "Vacuum Cleaner", "Iron", "Pillow", "Blanket", "Hanger", "Scissors", "Stapler", "Tape", "Calculator", "Flashlight", "Padlock", "Soap", "Towel", "Bucket", "Washing Machine", "Refrigerator", "Fan", "Air Conditioner", "Printer", "Keyboard", "Mouse", "Extension Cord"],
   "Animals": ["Dog", "Tiger", "Dolphin", "Penguin", "Elephant", "Butterfly", "Octopus", "Giraffe", "Owl", "Kangaroo"],
   "Food": ["Pizza", "Sushi", "Pancakes", "Tacos", "Ice Cream", "Biryani", "Popcorn", "Lasagna", "Mango", "Doughnut"],
   "Movies": ["Titanic", "Inception", "Avatar", "Jaws", "Gladiator", "Frozen", "Interstellar", "Coco", "Rocky", "Shrek"],
@@ -18,5 +18,6 @@
   "Fruits": ["Apple", "Banana", "Mango", "Strawberry", "Pineapple", "Watermelon", "Grapes", "Orange", "Cherry", "Papaya"],
   "Vehicles": ["Bicycle", "Train", "Airplane", "Motorcycle", "Submarine", "Tractor", "Ambulance", "Rocket", "Scooter", "Sailboat"],
   "Music": ["Guitar", "Piano", "Drums", "Violin", "Concert", "Microphone", "Jazz", "Rap", "Playlist", "Orchestra"],
-  "Jobs": ["Doctor", "Teacher", "Chef", "Pilot", "Firefighter", "Architect", "Artist", "Scientist", "Lawyer", "Farmer"]
+  "Jobs": ["Doctor", "Teacher", "Chef", "Pilot", "Firefighter", "Architect", "Artist", "Scientist", "Lawyer", "Farmer"],
+  "Funny": ["BVC", "Banana Peel", "Rubber Chicken", "Dad Joke", "Meme", "Silly Goose", "Whoopee Cushion", "Disco Ball", "Sock Puppet", "Pickle"]
 }
